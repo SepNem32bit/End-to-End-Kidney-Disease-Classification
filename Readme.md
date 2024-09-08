@@ -1,1 +1,1 @@
-This is production level projects building an end to end kidney disease classification pipeline
+This is a production level project building an end to end kidney disease classification pipeline
