@@ -1,0 +1,9 @@
+Metadata-Version: 2.1
+Name: DiseaseClassifier
+Version: 0.0.0
+Summary: end to end AI solution
+Home-page: https://github.com/SepNem32bit/End-to-End-Kidney-Disease-Classification
+Author: SepNem32bit
+Project-URL: Bug Tracker, https://github.com/SepNem32bit/End-to-End-Kidney-Disease-Classification/issues
+
+This is a production level project building an end to end kidney disease classification pipeline
