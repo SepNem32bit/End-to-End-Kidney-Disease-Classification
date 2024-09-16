@@ -6,6 +6,8 @@ with open("Readme.md","r",encoding="utf-8") as f:
 __version__="0.0.0"
 repo_name="End-to-End-Kidney-Disease-Classification"
 author_git_user_name="SepNem32bit"
+#local package
+#no need to address the full directory and it can only refer to the DiseaseClasssier without mentioning src folder
 src_repo="DiseaseClassifier"
 author_email=""
 
