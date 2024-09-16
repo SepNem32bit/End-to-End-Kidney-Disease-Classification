@@ -13,7 +13,7 @@ This is a production level project building an end to end kidney disease classif
 7. Update the pipeline 
 8. Update the main.py
 9. Update the dvc.yaml
-10. Update the app.y
+10. Update the app.py
 
 ### Steps:
 
