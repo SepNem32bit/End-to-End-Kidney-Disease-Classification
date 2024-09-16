@@ -42,7 +42,11 @@ for filePath in list_files:
         #creating directory
         os.makedirs(filedir,exist_ok=True)
         logging.info(f"Creating directory;{filedir} for the file: {filename}")
+<<<<<<< HEAD
     #if the path exist or the file doesn't contain any code so it won't affect those with codes
+=======
+    #if the path exist or the file doesn't contain any code
+>>>>>>> 9683f9418798614453b2f4a13c80804ea2454c6c
     if (not os.path.exists(filePath)) or (os.path.getsize(filePath)==0):
         with open(filePath,'w') as f:
             pass
