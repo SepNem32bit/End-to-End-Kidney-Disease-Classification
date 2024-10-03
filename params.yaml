@@ -1,2 +1,10 @@
 #dummy value, we'll fill this soon
-dummy: "artifacts_dummy"
+AUGUMENTATION: True
+IMAGE_SIZE: [224,224,3]
+BATCH_SIZE: 16
+#whether to include the fully-connected layer at the top of the network.
+INCLUDE_TOP: False
+EPOCHS: 1
+CLASSES: 2
+WEIGHTS: "imagenet"
+LEARNING_RATE: 0.01
