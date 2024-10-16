@@ -1,6 +1,6 @@
 from src.DiseaseClassifier.constants import *
 from src.DiseaseClassifier.utils.common import read_yaml, create_directories
-from src.DiseaseClassifier.entity.config_entity import DataIngestionConfig
+from src.DiseaseClassifier.entity.config_entity import DataIngestionConfig, PrepareBaseMLConfig
 
 #retreiving all ingestion config parameters
     
@@ -29,3 +29,27 @@ class ConfigurationManager:
             unzip_dir=config.unzip_dir
         )
         return data_ingestion_config
+    
+
+
+
+    #This method creates the directory structure needed for the base machine learning configuration 
+    #and returns an instance of PrepareBaseMLConfig
+    #we've defined DataIngestionConfig class above
+    def get_prepare_base_ml_config(self)->PrepareBaseMLConfig:
+        #prepare_base_ML in artifacts, config file 
+        config=self.config.prepare_base_ML
+        #referring to prepare_base_ML, artifacts, config file
+        create_directories([config.root_dir])
+
+        prepare_base_ml_config=PrepareBaseMLConfig(
+            root_dir=Path(config.root_dir),
+            base_model_path=Path(config.base_model_path),
+            updated_base_model_path=Path(config.updated_base_model_path),
+            params_image_size=self.params.IMAGE_SIZE,
+            params_learning_rate=self.params.LEARNING_RATE,
+            params_include_top=self.params.INCLUDE_TOP,
+            params_weights=self.params.WEIGHTS,
+            params_classes=self.params.CLASSES
+            )
+        return prepare_base_ml_config

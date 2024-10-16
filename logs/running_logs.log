@@ -41,3 +41,70 @@
 [2024-09-28 20:54:42,008: INFO: common: created directory at: <class 'pathlib.Path'>]
 [2024-09-28 20:54:42,008: INFO: common: created directory at: <class 'pathlib.Path'>]
 [2024-09-28 20:54:42,009: INFO: main: >>>> stage Data Ingestion Stage completed <<<<]
+[2024-10-10 18:50:12,667: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2024-10-10 18:50:12,709: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-10-10 18:50:12,712: INFO: common: created directory at: <class 'pathlib.Path'>]
+[2024-10-10 18:50:12,795: INFO: common: created directory at: <class 'pathlib.Path'>]
+[2024-10-12 21:10:15,459: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2024-10-12 21:10:15,544: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-10-12 21:10:15,546: INFO: common: created directory at: <class 'pathlib.Path'>]
+[2024-10-12 21:10:15,548: INFO: common: created directory at: <class 'pathlib.Path'>]
+[2024-10-12 21:11:26,888: WARNING: saving_api: You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. ]
+[2024-10-12 21:44:20,745: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2024-10-12 21:44:20,748: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-10-12 21:44:20,749: INFO: common: created directory at: <class 'pathlib.Path'>]
+[2024-10-12 21:44:20,751: INFO: common: created directory at: <class 'pathlib.Path'>]
+[2024-10-12 21:44:21,086: WARNING: saving_api: You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. ]
+[2024-10-12 22:14:13,663: INFO: main: >>>> stage Data Ingestion Stage started <<<<]
+[2024-10-12 22:14:13,671: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2024-10-12 22:14:13,678: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-10-12 22:14:13,681: INFO: common: created directory at: <class 'pathlib.Path'>]
+[2024-10-12 22:14:13,683: INFO: common: created directory at: <class 'pathlib.Path'>]
+[2024-10-12 22:14:13,718: INFO: main: >>>> stage Data Ingestion Stage completed <<<<]
+[2024-10-12 22:14:13,721: INFO: main: >>>> stage Prepare Base Model started <<<<]
+[2024-10-12 22:14:13,729: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2024-10-12 22:14:13,742: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-10-12 22:14:13,744: INFO: common: created directory at: <class 'pathlib.Path'>]
+[2024-10-12 22:14:13,745: ERROR: main: 'ConfigurationManager' object has no attribute 'get_prepapre_base_ml_config']
+Traceback (most recent call last):
+  File "D:\Data Science\Python Assignment\End to End Kidney Disease Detection\main.py", line 28, in <module>
+    baseModel.main()
+  File "D:\Data Science\Python Assignment\End to End Kidney Disease Detection\src\DiseaseClassifier\pipeline\stage02_prepare_base_model.py", line 19, in main
+    raise e
+  File "D:\Data Science\Python Assignment\End to End Kidney Disease Detection\src\DiseaseClassifier\pipeline\stage02_prepare_base_model.py", line 14, in main
+    prepare_base_model_config=config.get_prepapre_base_ml_config()
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'ConfigurationManager' object has no attribute 'get_prepapre_base_ml_config'
+[2024-10-16 21:52:06,609: INFO: main: >>>> stage Data Ingestion Stage started <<<<]
+[2024-10-16 21:52:06,645: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2024-10-16 21:52:06,670: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-10-16 21:52:06,671: INFO: common: created directory at: <class 'pathlib.Path'>]
+[2024-10-16 21:52:06,672: INFO: common: created directory at: <class 'pathlib.Path'>]
+[2024-10-16 21:52:06,685: INFO: main: >>>> stage Data Ingestion Stage completed <<<<]
+[2024-10-16 21:52:06,686: INFO: main: >>>> stage Prepare Base Model started <<<<]
+[2024-10-16 21:52:06,688: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2024-10-16 21:52:06,689: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-10-16 21:52:06,690: INFO: common: created directory at: <class 'pathlib.Path'>]
+[2024-10-16 21:52:06,691: ERROR: main: 'ConfigurationManager' object has no attribute 'get_prepapre_base_ml_config']
+Traceback (most recent call last):
+  File "D:\Data Science\Python Assignment\End to End Kidney Disease Detection\main.py", line 28, in <module>
+    baseModel.main()
+  File "D:\Data Science\Python Assignment\End to End Kidney Disease Detection\src\DiseaseClassifier\pipeline\stage02_prepare_base_model.py", line 19, in main
+    raise e
+  File "D:\Data Science\Python Assignment\End to End Kidney Disease Detection\src\DiseaseClassifier\pipeline\stage02_prepare_base_model.py", line 14, in main
+    prepare_base_model_config=config.get_prepapre_base_ml_config()
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'ConfigurationManager' object has no attribute 'get_prepapre_base_ml_config'
+[2024-10-16 21:55:14,272: INFO: main: >>>> stage Data Ingestion Stage started <<<<]
+[2024-10-16 21:55:14,275: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2024-10-16 21:55:14,276: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-10-16 21:55:14,277: INFO: common: created directory at: <class 'pathlib.Path'>]
+[2024-10-16 21:55:14,277: INFO: common: created directory at: <class 'pathlib.Path'>]
+[2024-10-16 21:55:14,278: INFO: main: >>>> stage Data Ingestion Stage completed <<<<]
+[2024-10-16 21:55:14,278: INFO: main: >>>> stage Prepare Base Model started <<<<]
+[2024-10-16 21:55:14,280: INFO: common: yaml file: config\config.yaml loaded successfully]
+[2024-10-16 21:55:14,282: INFO: common: yaml file: params.yaml loaded successfully]
+[2024-10-16 21:55:14,283: INFO: common: created directory at: <class 'pathlib.Path'>]
+[2024-10-16 21:55:14,284: INFO: common: created directory at: <class 'pathlib.Path'>]
+[2024-10-16 21:55:19,070: WARNING: saving_api: You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. ]
+[2024-10-16 21:55:19,381: INFO: main: >>>> stage Prepare Base Model completed <<<<]
