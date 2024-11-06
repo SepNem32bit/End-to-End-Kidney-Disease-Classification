@@ -1,4 +1,3 @@
-#dummy value, we'll fill this soon
 AUGUMENTATION: True
 IMAGE_SIZE: [224,224,3]
 BATCH_SIZE: 16
