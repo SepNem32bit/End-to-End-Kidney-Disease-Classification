@@ -3,7 +3,7 @@ from src.DiseaseClassifier.components.data_ingestion import DataIngestion
 #logger be found in init file
 from DiseaseClassifier import logger
 
-STAGE_NAME="Data Ingestion Stage"
+STAGE_NAME="Data Ingestion"
 
 class DataIngestionTrainingPipeline():
 
