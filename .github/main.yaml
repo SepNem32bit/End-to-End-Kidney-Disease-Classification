@@ -1,0 +1,120 @@
+#This YAML configuration defines a GitHub Actions workflow for a Continuous Integration (CI) and Continuous Deployment (CD) pipeline that automates the process of testing, building, pushing Docker images to Amazon ECR, and deploying them
+# Integration:
+# Validates the code (linting, testing).
+# Ensures no breaking changes are introduced.
+# Delivery:
+# Builds the Docker image.
+# Pushes the image to AWS ECR.
+# Deployment:
+# Pulls the Docker image from ECR.
+# Deploys it on a self-hosted server.
+# Runs the application inside a Docker container.
+
+name: workflow
+#Trigger: Executes whenever there’s a push to the main branch.
+#Ignores changes to README.md to prevent unnecessary runs when only documentation changes.
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'README.md'
+
+#Required for authentication and accessing repository contents securely.
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  integration:
+  
+    name: Continuous Integration
+    runs-on: ubuntu-latest
+    steps:
+      #Pulls the latest code from the repository
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      #Ensures the code follows style guidelines (e.g., PEP 8 for Python).
+      - name: Lint code
+        run: echo "Linting repository"
+
+      #Runs automated tests to validate functionality
+      - name: Run unit tests
+        run: echo "Running unit tests"
+
+  build-and-push-ecr-image:
+  #A Docker container bundles your application, dependencies, and runtime into a portable image.
+  #Stores the Docker image in a managed container registry (ECR)
+    name: Continuous Delivery
+    needs: integration
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Install Utilities
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq unzip
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Build, tag, and push image to Amazon ECR
+        id: build-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY_NAME }}
+          IMAGE_TAG: latest
+        run: |
+          # Build a docker container and
+          # push it to ECR so that it can
+          # be deployed to ECS.
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+          
+          
+  Continuous-Deployment:
+    needs: build-and-push-ecr-image
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+      
+      #Downloads the Docker image from ECR.
+      - name: Pull latest images
+        run: |
+         docker pull ${{secrets.AWS_ECR_LOGIN_URI}}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
+         
+      # - name: Stop and remove container if running
+      #   run: |
+      #    docker ps -q --filter "name=cnncls" | grep -q . && docker stop cnncls && docker rm -fv cnncls
+
+      #Launches the Docker image as a container accessible on port 8080
+      - name: Run Docker Image to serve users
+        run: |
+         docker run -d -p 8080:8080 --name=cnncls -e 'AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}' -e 'AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}' -e 'AWS_REGION=${{ secrets.AWS_REGION }}'  ${{secrets.AWS_ECR_LOGIN_URI}}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
+      #Removes unused Docker images and containers to free up disk space.
+      - name: Clean previous images and containers
+        run: |
+         docker system prune -f

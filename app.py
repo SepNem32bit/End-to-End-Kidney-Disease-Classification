@@ -36,6 +36,8 @@ def home():
 #GET and POST methods allow flexibility in accessing this route, though POST is commonly used for operations that change the server state, like training a model.
 #The POST method is used to send data to the server to create or update a resource
 #The GET method is used to retrieve data from the server.
+
+#After the url if we type /train, it will start training
 @app.route("/train",methods=['GET','POST'])
 #With @cross_origin() above home, it applies CORS just to this endpoint, 
 #allowing cross-origin requests from different domains when visiting this route

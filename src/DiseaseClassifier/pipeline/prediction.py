@@ -10,6 +10,8 @@ class PredictionPipeline():
     def predict(self):
         #load model
         model=load_model(os.path.join("artifact","training","model.h5"))
+        # #we can create another file only for saved models and push it into git
+        # model=load_model(os.path.join("model","model.h5"))
         #random image for prediction
         imagename=self.filename
         test_image=image.load_img(imagename,target_size=(224,224))

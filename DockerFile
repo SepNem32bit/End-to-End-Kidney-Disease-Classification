@@ -1,0 +1,16 @@
+#It's optimized for production environments with minimal size and dependencies,making it faster to build and deploy.
+
+FROM python:3.8-slim-buster
+
+#This installs the AWS CLI (Command Line Interface) in the container.
+RUN apt update -y && apt install awscli -y
+#This sets the working directory inside the container to /app.
+WORKDIR /app
+
+#This copies all files from the current directory on the host machine (where the Dockerfile is located) into the /app directory inside the container.
+#It ensures that the application's source code and other necessary files (like requirement.txt and app.py) are available in the container.
+COPY . /app
+RUN pip install -r requirement.txt
+
+#When the container starts, it will automatically run python3 app.py.
+CMD ["python3", "app.py"]

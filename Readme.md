@@ -37,3 +37,29 @@ python -m venv myenv
 ```bash
 pip install -r requirements.txt
 ```
+
+
+## Deployment
+
+EC2 access : It is virtual machine
+
+ECR: Elastic Container registry to save your docker image in aws
+
+
+### Steps
+
+1. Build docker image of the source code
+
+2. Push your docker image to ECR
+
+3. Launch Your EC2 
+
+4. Pull Your image from ECR in EC2
+
+5. Lauch your docker image in EC2
+
+### Policy:
+
+1. AmazonEC2ContainerRegistryFullAccess
+
+2. AmazonEC2FullAccess
