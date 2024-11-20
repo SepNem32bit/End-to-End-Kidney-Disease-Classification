@@ -106,6 +106,8 @@ jobs:
         run: |
          docker pull ${{secrets.AWS_ECR_LOGIN_URI}}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
          
+
+      ##We have to uncomment this part when the container is running
       # - name: Stop and remove container if running
       #   run: |
       #    docker ps -q --filter "name=cnncls" | grep -q . && docker stop cnncls && docker rm -fv cnncls

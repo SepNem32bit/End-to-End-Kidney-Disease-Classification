@@ -13,6 +13,8 @@ class EvaluationPipeline():
         evaluation=Evaluation(config=evaluation_config)
         evaluation.get_base_model()
         evaluation.evaluation()
+        #we can comment this step out when we are certain about parameters
+        #For testing hyperparameters
         evaluation.log_into_mlflow() 
 
 
